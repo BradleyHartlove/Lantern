@@ -22,6 +22,6 @@ async def save_document(file: UploadFile) -> str:
         async with aiofiles.open(file_path, "wb") as f:
             await f.write(content)
         logging.info(f"Document saved: {file_path}")
-        return content
+        return content.decode('utf-8')
     except Exception as e:
         raise RuntimeError(f"Failed to save document {file_name}: {e}")

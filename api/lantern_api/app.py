@@ -34,7 +34,7 @@ def create_app():
 
     # Include routers
     from .routers.health import router as health_router
-    from .routers.document import router as document_router
+    from .routers.documents_router import router as document_router
     app.include_router(health_router, tags=["Health"])
     app.include_router(document_router, tags=["Documents"])
 
