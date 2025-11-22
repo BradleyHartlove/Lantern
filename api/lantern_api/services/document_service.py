@@ -1,5 +1,7 @@
 import os
+import aiofiles
 import logging
+from fastapi import UploadFile
 
 logger = logging.getLogger(__name__)
 
@@ -12,10 +14,13 @@ def init_document_storage():
     except Exception as e:
         raise RuntimeError(f"Failed to create document storage directory: {e}")
 
-def process_document_text(text: str) -> str:
-    """
-    A placeholder function to process document text.
-    Currently, it just returns the text as is.
-    """
-    # Future processing logic can be added here
-    return text
+async def save_document(file: UploadFile):
+    file_name = file.filename
+    content = file.file.read()  # TODO: Implement non text files handling
+    file_path = os.path.join(DOCUMENT_STORAGE_LOCATION, file_name)
+    try:
+        async with aiofiles.open(file_path, "wb") as f:
+            await f.write(content)
+        logging.info(f"Document saved: {file_path}")
+    except Exception as e:
+        raise RuntimeError(f"Failed to save document {file_name}: {e}")
