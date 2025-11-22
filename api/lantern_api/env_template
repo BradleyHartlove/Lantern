@@ -5,8 +5,12 @@ API_KEY="my_secure_key"
 # Configuration for RAG
 # General confugrations that apply to all RAG methods
 
+# OpenAI API Configuration
+OPENAI_API_KEY="your_api_key_here"
+OPENAI_API_BASE_URL="https://api.openai.com/v1/"
+
 # Location to store ingested documents
-DOCUMENT_STORAGE_LOCATION="./document_storage"
+DOCUMENT_STORAGE_LOCATION="/opt/documents"
 
 # Method has three options, basic, hybrid, and graph.
 RAG_METHOD="basic"

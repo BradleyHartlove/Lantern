@@ -14,7 +14,7 @@ def init_document_storage():
     except Exception as e:
         raise RuntimeError(f"Failed to create document storage directory: {e}")
 
-async def save_document(file: UploadFile):
+async def save_document(file: UploadFile) -> str:
     file_name = file.filename
     content = file.file.read()  # TODO: Implement non text files handling
     file_path = os.path.join(DOCUMENT_STORAGE_LOCATION, file_name)
@@ -22,5 +22,6 @@ async def save_document(file: UploadFile):
         async with aiofiles.open(file_path, "wb") as f:
             await f.write(content)
         logging.info(f"Document saved: {file_path}")
+        return content
     except Exception as e:
         raise RuntimeError(f"Failed to save document {file_name}: {e}")
