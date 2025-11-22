@@ -1,3 +1,19 @@
 # This is an API key used to protect all routes of this service.
 # Include this in your app's requests to this app in the 'lantern-api-key' header.
-API_KEY="some_secure_key"
+API_KEY="my_secure_key"
+
+# Configuration for RAG
+# General confugrations that apply to all RAG methods
+
+# Location to store ingested documents
+DOCUMENT_STORAGE_LOCATION="./document_storage"
+
+# Method has three options, basic, hybrid, and graph.
+RAG_METHOD="basic"
+
+# Basic RAG configurations (only used if 'RAG_METHOD' is set to 'basic')
+# Defines the chunking method to use with basic RAG
+#    -> 'token' simply splits by every N tokens with configurable overlap
+BASIC_RAG_CHUNKING_METHOD="token"
+BASIC_RAG_CHUNKING_TOKEN_COUNT="300"
+BASIC_RAG_CHUNKING_TOKEN_OVERLAP="30"
